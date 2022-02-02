@@ -35,6 +35,10 @@ _Teremos permissões, políticas, grupos de políticas (grupos de usuários) e u
     yarn add -D supertest @types/supertest
 
     node ace make:controller User
+    yarn add @adonisjs/lucid
+    node ace configure @adonisjs/lucid
+    node ace make:model User
+    node ace make:migration users
 
 **_*Funcionalidade Cenario dos testes Padrão estilo*_**
 
