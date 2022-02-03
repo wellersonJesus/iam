@@ -1,8 +1,7 @@
-import { UserFactory } from './../../database/factories/index';
-import test from "japa"
-import { Assert } from "japa/build/src/Assert"
+import { Database } from '@ioc:Adonis/Lucid/Database';
+import { UserFactory } from 'Database/factories/'
+import test from 'japa'
 import supertest from 'supertest'
-import Database from '@ioc:Adonis/Lucid/Database';
 
 const BASE_URL = `http://${process.env.HOST}:${process.env.PORT}`
 
@@ -44,12 +43,11 @@ test.group('User', (group) => {
         password: 'test',
       })
       .expect(409)
-  })
 
-  group.beforeEach(async () => {
-    await Database.beginGlobalTransaction()
+    assert.exists(body.message)
+    assert.exists(body.code)
+    assert.exists(body.status)
+    assert.include(body.message, 'email')
+    assert.equal(body.code, 'BAD_REQUEST')
+    assert.equal(body.status, 409)
   })
-  group.afterEach(async () => {
-    await Database.rollbackGlobalTransaction()
-  })
-})
