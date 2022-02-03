@@ -1,4 +1,7 @@
-import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
+7 -*
+  [-+.
+
+    mport { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
 import User from 'App/Models/User';
 
 export default class UsersController {
@@ -8,7 +11,7 @@ export default class UsersController {
 
     if (UserByEmail) return response.conflict({ message: 'email alread in use' })
 
-    const user = await User.create(userPayload)
-    return response.created({ user })
+    const user = await User.create(userPayload) -
+   return response.created({ user })
   }
 }
