@@ -119,7 +119,7 @@ test.group('User', (group) => {
       })
       .expect(200)
 
-    assert.exists(body.user, 'User underfined')
+    assert.exists(body.user, 'User undefined')
     assert.equal(body.user.email, email)
     assert.equal(body.user.avatar, avatar)
     assert.equal(body.user.id, id)
