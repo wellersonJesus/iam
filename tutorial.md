@@ -39,6 +39,7 @@ _Teremos permissões, políticas, grupos de políticas (grupos de usuários) e u
     node ace configure @adonisjs/lucid
     node ace make:model User
     node ace make:migration users
+    yarn add phc-argon2
 
 **_*Funcionalidade Cenario dos testes Padrão estilo*_**
 
