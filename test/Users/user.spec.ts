@@ -1,4 +1,4 @@
-import { Database } from '@ioc:Adonis/Lucid/Database';
+import Database from '@ioc:Adonis/Lucid/Database'
 import { UserFactory } from 'Database/factories/'
 import test from 'japa'
 import supertest from 'supertest'
@@ -33,7 +33,7 @@ test.group('User', (group) => {
     assert.notExists(body.user.password, 'Password defined')
   })
   //Retorna erro 409 quando email já estiver sendo utilizado
-  test.only('it should return 409 whe email is already in use', async (assert) => {
+  test('it should return 409 whe email is already in use', async (assert) => {
     const { email } = await UserFactory.create()
     const { body } = await supertest(BASE_URL)
       .post('/users')
@@ -52,7 +52,7 @@ test.group('User', (group) => {
     assert.equal(body.status, 409)
   })
   //Retorna erro 409 quando email já estiver sendo utilizado
-  test.only('it should return 409 whe username is already in use', async (assert) => {
+  test('it should return 409 whe username is already in use', async (assert) => {
     const { username } = await UserFactory.create()
     const { body } = await supertest(BASE_URL)
       .post('/users')
@@ -70,3 +70,11 @@ test.group('User', (group) => {
     assert.equal(body.code, 'BAD_REQUEST')
     assert.equal(body.status, 409)
   })
+
+  group.beforeEach(async () => {
+    await Database.beginGlobalTransaction()
+  })
+  group.afterEach(async () => {
+    await Database.rollbackGlobalTransaction()
+  })
+})
