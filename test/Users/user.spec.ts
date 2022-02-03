@@ -29,7 +29,6 @@ test.group('User', (group) => {
     assert.exists(body.user.id, 'Id undefined')
     assert.equal(body.user.email, userPayload.email)
     assert.equal(body.user.username, userPayload.username)
-    assert.equal(body.user.avatar, userPayload.avatar)
     assert.notExists(body.user.password, 'Password defined')
   })
   //Retorna erro 409 quando email já estiver sendo utilizado
@@ -71,12 +70,40 @@ test.group('User', (group) => {
     assert.equal(body.status, 409)
   })
   //Retornar 422 quando os dados necessários não são fornecidos
-  test.only('it should return 422 whe required data is not provided', async (assert) => {
+  test('it should return 422 whe required data is not provided', async (assert) => {
     const { body } = await supertest(BASE_URL).post('/users').send({}).expect(422)
+    //console.log({ body: JSON.stringify(body) })
     assert.equal(body.code, 'BAD_REQUEST')
     assert.equal(body.status, 422)
   })
-
+  //Retornar 422 quando forneceu um email inválido
+  test('it should return 422 whe provided an invalid email', async (assert) => {
+    const { body } = await supertest(BASE_URL)
+      .post('/users')
+      .send({
+        email: 'test@',
+        password: 'test',
+        username: 'test',
+      })
+      .expect(422)
+    //console.log({ body: JSON.stringify(body) })
+    assert.equal(body.code, 'BAD_REQUEST')
+    assert.equal(body.status, 422)
+  })
+  //Retornar 422 quando forneceu um password inválido
+  test('it should return 422 whe provided an invalid password', async (assert) => {
+    const { body } = await supertest(BASE_URL)
+      .post('/users')
+      .send({
+        email: 'test@test.com',
+        password: 'tes',
+        username: 'test',
+      })
+      .expect(422)
+    //console.log({ body: JSON.stringify(body) })
+    assert.equal(body.code, 'BAD_REQUEST')
+    assert.equal(body.status, 422)
+  })
   group.beforeEach(async () => {
     await Database.beginGlobalTransaction()
   })

@@ -41,6 +41,7 @@ _Teremos permissões, políticas, grupos de políticas (grupos de usuários) e u
     node ace make:migration users
     yarn add phc-argon2
     node ace make:exception BadRequest
+    node ace make:validator CreateUser
 
 **_*Funcionalidade Cenario dos testes Padrão estilo*_**
 
