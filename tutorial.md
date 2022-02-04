@@ -12,6 +12,7 @@ _Teremos permissões, políticas, grupos de políticas (grupos de usuários) e u
 - [Adonis](https://blog.rocketseat.com.br/adonis-auth-jwt-api-rest/)
 - [Node](https://medium.com/desenvolvimento-com-node-js/come%C3%A7ando-a-desenvolver-com-o-node-js-74b70af01a0d)
 - yarn
+- [mailtrap](https://mailtrap.io/register/signup)
 
 **_Preparando ambiente_**
 
@@ -42,6 +43,9 @@ _Teremos permissões, políticas, grupos de políticas (grupos de usuários) e u
     yarn add phc-argon2
     node ace make:exception BadRequest
     node ace make:validator CreateUser
+
+    yarn add @adonisjs/mail
+    node ace configure @adonis/mail
 
 **_*Funcionalidade Cenario dos testes Padrão estilo*_**
 
