@@ -6,6 +6,7 @@ import CreateUser from 'App/Validators/CreateUserValidator'
 export default class UsersController {
   public async store({ request, response }: HttpContextContract) {
     const userPayload = await request.validate(CreateUser)
+
     const UserByEmail = await User.findBy('email', userPayload.email)
     const UserByUsername = await User.findBy('username', userPayload.username)
 

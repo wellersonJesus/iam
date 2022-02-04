@@ -111,7 +111,7 @@ test.group('User', (group) => {
     const avatar = 'http://github.com/wellersonjesus.png'
 
     const { body } = await supertest(BASE_URL)
-      .put('/users/${id}')
+      .put(`/users/${id}`)
       .send({
         email,
         avatar,
