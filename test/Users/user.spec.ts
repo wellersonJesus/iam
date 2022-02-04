@@ -156,7 +156,6 @@ test.group('User', (group) => {
     assert.equal(body.code, 'BAD_REQUEST')
     assert.equal(body.status, 422)
   })
-  ///////////
   //Retornar 422 ao fornecer um e-mail inválido
   test('it should return 422 when providing an invalid email', async (assert) => {
     const { id, password, avatar } = await UserFactory.create()
